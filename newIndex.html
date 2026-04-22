@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tshedza Tshikovhi | Data Scientist & Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --blue:   #0054a0;
+  --sky:    #00aaff;
+  --cyan:   #00d4ff;
+  --white:  #f0f4ff;
+  --dim:    #8899bb;
+  --bg:     #060810;
+  --card:   rgba(0,84,160,0.10);
+  --border: rgba(0,170,255,0.18);
+  --gold:   #ffd700;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── BACKGROUND ─── */
+.bg-layer {
+  position: fixed; inset: 0; z-index: -3;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,84,160,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(0,170,255,0.12) 0%, transparent 60%),
+    #060810;
+}
+
+.bg-photo {
+  position: fixed; inset: 0; z-index: -2;
+  background: url('chelsea.jpg') center/cover no-repeat;
+  opacity: 0.07;
+  filter: grayscale(30%) blur(1px);
+}
+
+/* grid overlay */
+.bg-grid {
+  position: fixed; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(rgba(0,170,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,170,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  height: 60px;
+  background: rgba(6,8,16,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: var(--sky);
+}
+
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+}
+
+.nav-links a {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color .25s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(0,212,255,0.06);
+}
+
+/* ─── HERO ─── */
+#home {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px 60px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 1100px; margin: auto; width: 100%;
+  display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--sky);
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  opacity: 0; animation: fadeUp .6s .2s forwards;
+}
+
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 8vw, 96px);
+  line-height: .92;
+  letter-spacing: 2px;
+  color: var(--white);
+  opacity: 0; animation: fadeUp .7s .35s forwards;
+}
+
+.hero-name span { color: var(--sky); }
+
+.hero-title {
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--dim);
+  letter-spacing: 1px;
+  opacity: 0; animation: fadeUp .6s .5s forwards;
+}
+
+.hero-title strong { color: var(--white); font-weight: 600; }
+
+.hero-desc {
+  margin-top: 24px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--dim);
+  max-width: 540px;
+  opacity: 0; animation: fadeUp .6s .65s forwards;
+}
+
+.hero-actions {
+  display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .6s .8s forwards;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  background: var(--blue);
+  border: 1px solid var(--sky);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+
+.btn-primary:hover {
+  background: var(--sky);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,170,255,0.35);
+}
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: border-color .2s, color .2s;
+}
+
+.btn-outline:hover { border-color: var(--sky); color: var(--white); }
+
+.hero-badge-group {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  opacity: 0; animation: fadeIn 1s .9s forwards;
+}
+
+.chelsea-crest {
+  width: 110px; filter: drop-shadow(0 0 20px rgba(0,170,255,0.5));
+  animation: float 4s ease-in-out infinite;
+}
+
+.supporter-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--sky);
+  text-align: center;
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(0,84,160,0.15);
+}
+
+.hero-stats {
+  display: flex; gap: 40px; margin-top: 44px;
+  opacity: 0; animation: fadeUp .6s 1s forwards;
+}
+
+.stat-item { text-align: left; }
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  color: var(--sky);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 10px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+.scroll-hint::after {
+  content: '';
+  width: 1px; height: 40px;
+  background: linear-gradient(var(--sky), transparent);
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 100px 60px; }
+.section-inner { max-width: 1100px; margin: auto; }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--sky);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 48px;
+}
+
+.divider {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--sky), transparent);
+  margin: 16px 0 44px;
+}
+
+/* ─── ABOUT ─── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+}
+
+.about-text { font-size: 15px; line-height: 1.85; color: var(--dim); }
+.about-text p { margin-bottom: 16px; }
+.about-text strong { color: var(--white); }
+
+.about-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.info-row {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.info-row:last-child { border-bottom: none; }
+
+.info-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(0,170,255,0.12);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sky); font-size: 14px; flex-shrink: 0;
+}
+
+.info-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--dim); letter-spacing: 1px; margin-bottom: 4px;
+}
+
+.info-val { font-size: 14px; color: var(--white); }
+
+/* ─── SKILLS ─── */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+}
+
+.skill-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color .3s, transform .3s;
+}
+
+.skill-card:hover {
+  border-color: var(--sky);
+  transform: translateY(-4px);
+}
+
+.skill-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--sky);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.skill-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+
+.tag {
+  padding: 5px 11px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--dim);
+  font-family: 'JetBrains Mono', monospace;
+  transition: border-color .2s, color .2s;
+}
+
+.tag:hover { border-color: var(--sky); color: var(--white); }
+.tag.hot { border-color: rgba(0,170,255,0.4); color: var(--sky); }
+
+/* ─── PROJECTS ─── */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;
+}
+
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--sky));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s;
+}
+
+.project-card:hover::before { transform: scaleX(1); }
+
+.project-card:hover {
+  border-color: var(--sky);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,84,160,0.3);
+}
+
+.project-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: rgba(0,170,255,0.1);
+  line-height: 1;
+  position: absolute; right: 20px; top: 16px;
+}
+
+.project-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: rgba(0,84,160,0.3);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sky); font-size: 18px;
+}
+
+.project-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.project-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--dim);
+  flex: 1;
+}
+
+.project-tech {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+.tech-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(0,170,255,0.08);
+  border: 1px solid rgba(0,170,255,0.2);
+  color: var(--sky);
+}
+
+.project-links {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.proj-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: .5px;
+  transition: background .2s, color .2s;
+}
+
+.proj-btn-gh {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white);
+}
+
+.proj-btn-gh:hover { background: rgba(255,255,255,0.12); }
+
+.proj-btn-live {
+  background: rgba(0,84,160,0.3);
+  border: 1px solid var(--sky);
+  color: var(--sky);
+}
+
+.proj-btn-live:hover { background: var(--sky); color: #000; }
+
+/* ─── CERTIFICATIONS ─── */
+.cert-list {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;
+}
+
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  display: flex; align-items: flex-start; gap: 14px;
+  transition: border-color .3s;
+}
+
+.cert-card:hover { border-color: var(--sky); }
+
+.cert-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--sky);
+  margin-top: 5px; flex-shrink: 0;
+  box-shadow: 0 0 8px var(--sky);
+}
+
+.cert-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.cert-issuer { font-size: 12px; color: var(--dim); font-family: 'JetBrains Mono', monospace; }
+
+/* ─── ANALYTICS ─── */
+.analytics-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;
+  margin-bottom: 40px;
+}
+
+.metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  transition: border-color .3s;
+}
+
+.metric-card:hover { border-color: var(--sky); }
+
+.metric-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.chart-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.chart-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--dim);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+canvas {
+  width: 100%;
+  height: 220px;
+  display: block;
+}
+
+/* ─── CONTACT ─── */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+}
+
+.contact-blurb {
+  font-size: 15px; line-height: 1.8; color: var(--dim); margin-bottom: 32px;
+}
+
+.contact-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none; color: inherit;
+  transition: color .2s;
+}
+
+.contact-item:hover .contact-val { color: var(--sky); }
+
+.contact-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(0,170,255,0.1); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sky); font-size: 14px; flex-shrink: 0;
+}
+
+.contact-key { font-size: 10px; color: var(--dim); letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
+.contact-val { font-size: 13px; color: var(--white); margin-top: 2px; }
+
+.map-placeholder {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px 28px;
+  text-align: center;
+}
+
+.map-city {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+
+.map-country {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--sky);
+  margin-top: 4px;
+}
+
+.map-coords {
+  font-size: 11px; color: var(--dim);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 12px;
+}
+
+.social-strip {
+  display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  background: var(--card);
+  transition: border-color .2s, color .2s, background .2s;
+}
+
+.social-btn:hover {
+  border-color: var(--sky);
+  color: var(--white);
+  background: rgba(0,170,255,0.1);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 12px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+footer span { color: var(--sky); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(22px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50%      { opacity:.4; }
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  #home { padding: 90px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-badge-group { display: none; }
+  .hero-stats { gap: 24px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BG -->
+<div class="bg-layer"></div>
+<div class="bg-photo"></div>
+<div class="bg-grid"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">TT</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#stats">Analytics</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-badge">Available for opportunities</div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">// Data Scientist & Software Engineer</div>
+      <div class="hero-name">Tshedza<br><span>Tshikovhi</span></div>
+      <div class="hero-title">
+        Intern @ <strong>Shudu Connections – Innovation Hub</strong> &nbsp;·&nbsp; Pretoria, SA
+      </div>
+      <p class="hero-desc">
+        Building intelligent systems that solve real problems — from fraud detection to unemployment risk modelling.
+        Passionate about machine learning, scalable software, and the beautiful game.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#projects"><i class="fa-solid fa-code"></i> View Projects</a>
+        <a class="btn-outline" href="https://github.com/Unsolvedstar" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a class="btn-outline" href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num" id="projCount">8+</div><div class="stat-label">Projects</div></div>
+        <div class="stat-item"><div class="stat-num">IBM</div><div class="stat-label">Certified</div></div>
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Languages</div></div>
+      </div>
+    </div>
+    <div class="hero-badge-group">
+      <img class="chelsea-crest" src="https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg" alt="Chelsea FC">
+      <div class="supporter-tag">CHELSEA FC SUPPORTER</div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">01 / About</div>
+    <div class="section-title">Who I Am</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm an aspiring <strong>Data Scientist and Software Engineer</strong> currently working as a
+          Software Development Intern at <strong>Shudu Connections – Innovation Hub</strong>. I combine
+          a love for machine learning with full-stack development skills to build intelligent, scalable applications.
+        </p>
+        <p>
+          My work spans <strong>predictive modelling, fraud detection, sports analytics</strong> and social-impact
+          projects — including an unemployment risk estimator built specifically for South African youth.
+        </p>
+        <p>
+          Off the keyboard I'm a former <strong>soccer team captain</strong> (4× champion), a fluent speaker
+          of English, Venda, Tswana, and Sotho, and a lifelong <strong>Chelsea FC</strong> supporter. We've
+          won it all. 🏆
+        </p>
+      </div>
+      <div class="about-panel">
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><div class="info-key">Location</div><div class="info-val">Pretoria North, South Africa</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div><div class="info-key">Current Role</div><div class="info-val">Software Dev Intern — Shudu Connections</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div><div class="info-key">Education</div><div class="info-val">BSc IT (Data Science) — Eduvos Midrand</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-language"></i></div>
+          <div><div class="info-key">Languages</div><div class="info-val">English · Venda · Tswana · Sotho</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div><div class="info-key">Achievement</div><div class="info-val">Soccer Team Captain — 4× Champion</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-circle-dot"></i></div>
+          <div><div class="info-key">Status</div><div class="info-val" style="color:var(--cyan)">Open to opportunities</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">02 / Skills</div>
+    <div class="section-title">Technical Stack</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title"><i class="fa-solid fa-code"></i> Languages</div>
+        <div class="skill-tags">
+          <span class="tag hot">Python</span>
+          <span class="tag hot">SQL</span>
+          <span class="tag hot">JavaScript</span>
+          <span class="tag hot">TypeScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">R</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><i class="fa-solid fa-brain"></i> Data Science & ML</div>
+        <div class="skill-tags">
+          <span class="tag hot">Machine Learning</span>
+          <span class="tag hot">Scikit-learn</span>
+          <span class="tag hot">Pandas</span>
+          <span class="tag hot">NumPy</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Statistical Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><i class="fa-solid fa-layer-group"></i> Full Stack</div>
+        <div class="skill-tags">
+          <span class="tag hot">React.js</span>
+          <span class="tag hot">FastAPI</span>
+          <span class="tag hot">Flask</span>
+          <span class="tag hot">Streamlit</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">OOP</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><i class="fa-solid fa-server"></i> Tools & Infra</div>
+        <div class="skill-tags">
+          <span class="tag hot">Git & GitHub</span>
+          <span class="tag hot">Jupyter</span>
+          <span class="tag hot">VS Code</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Cloud (basic)</span>
+          <span class="tag">Cybersecurity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">03 / Projects</div>
+    <div class="section-title">Featured Work</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-number">01</div>
+        <div class="project-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="project-title">Fraud Detection System</div>
+        <div class="project-desc">Anomaly detection system for financial fraud. Built an interactive ML dashboard for real-time predictions using classification algorithms on transaction data.</div>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">Scikit-learn</span>
+          <span class="tech-chip">Streamlit</span>
+          <span class="tech-chip">Pandas</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-btn proj-btn-gh" href="https://github.com/Unsolvedstar/Fraud-Detection" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="proj-btn proj-btn-live" href="https://fraud-detection-blw97x5uesdprengweuci7.streamlit.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live App</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">02</div>
+        <div class="project-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <div class="project-title">Unemployment Risk Estimator</div>
+        <div class="project-desc">ML model predicting unemployment risk factors for South African youth. Full pipeline: data preprocessing, feature engineering, EDA, and deployed Streamlit app.</div>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">ML</span>
+          <span class="tech-chip">Streamlit</span>
+          <span class="tech-chip">EDA</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-btn proj-btn-gh" href="https://github.com/Unsolvedstar/UnemploymentRiskEstimatorforSouthAfricanYouth" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="proj-btn proj-btn-live" href="https://unemploymentriskestimatorforsouthafricanyouth-crhaczvjycs8cpgr.streamlit.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live App</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">03</div>
+        <div class="project-icon"><i class="fa-solid fa-futbol"></i></div>
+        <div class="project-title">Football Score Predictor</div>
+        <div class="project-desc">Predictive sports analytics model analysing historical match data to forecast football results. Interactive prediction system with full deployment.</div>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">ML</span>
+          <span class="tech-chip">Streamlit</span>
+          <span class="tech-chip">Sports Analytics</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-btn proj-btn-gh" href="https://github.com/Unsolvedstar/Football-Score-Predictor" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="proj-btn proj-btn-live" href="https://football-score-predictor-bmxywoqz7biwmdxpvofdzj.streamlit.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live App</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">04</div>
+        <div class="project-icon"><i class="fa-solid fa-credit-card"></i></div>
+        <div class="project-title">Credit Card Approval Model</div>
+        <div class="project-desc">Predictive model for credit card approval classification using supervised learning techniques and feature analysis on financial applicant data.</div>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">Scikit-learn</span>
+          <span class="tech-chip">Pandas</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-btn proj-btn-gh" href="https://github.com/Unsolvedstar" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">05</div>
+        <div class="project-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <div class="project-title">Mental Health & Loadshedding</div>
+        <div class="project-desc">Data analysis study exploring the correlation between South Africa's loadshedding crisis and mental health stress indicators in affected communities.</div>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">Data Analysis</span>
+          <span class="tech-chip">Matplotlib</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-btn proj-btn-gh" href="https://github.com/Unsolvedstar" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">06</div>
+        <div class="project-icon"><i class="fa-solid fa-globe-africa"></i></div>
+        <div class="project-title">SA Economic Data Analysis</div>
+        <div class="project-desc">Comprehensive analysis of South African economic indicators using statistical methods and data visualization to surface key trends and insights.</div>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">R</span>
+          <span class="tech-chip">Data Viz</span>
+          <span class="tech-chip">Statistics</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-btn proj-btn-gh" href="https://github.com/Unsolvedstar" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="proj-btn proj-btn-live" href="https://share.streamlit.io/user/unsolvedstar" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Streamlit</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-inner">
+    <div class="section-label">04 / Certifications</div>
+    <div class="section-title">Credentials</div>
+    <div class="cert-list">
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Python for Data Science, AI & Dev</div><div class="cert-issuer">IBM — Professional Certificate</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Data Analysis with Python</div><div class="cert-issuer">IBM — Professional Certificate</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Data Visualization with Python</div><div class="cert-issuer">IBM — Professional Certificate</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">SQL for Data Science</div><div class="cert-issuer">IBM — Professional Certificate</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Data Science Methodology</div><div class="cert-issuer">IBM — Professional Certificate</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Cloud Architecture</div><div class="cert-issuer">Upskillist — 2026</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Cybersecurity Certificate</div><div class="cert-issuer">Upskillist — 2026</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">SQL & R Data Analysis Paths</div><div class="cert-issuer">Codecademy — 2025</div></div></div>
+      <div class="cert-card"><div class="cert-dot"></div><div><div class="cert-title">Mathematics for Data Science</div><div class="cert-issuer">Codecademy — 2025</div></div></div>
+      <div class="cert-card" style="border-color:rgba(0,212,255,0.4)"><div class="cert-dot" style="background:var(--cyan)"></div><div><div class="cert-title" style="color:var(--cyan)">Machine Learning (Python) — In Progress</div><div class="cert-issuer">Currently Learning</div></div></div>
+      <div class="cert-card" style="border-color:rgba(0,212,255,0.4)"><div class="cert-dot" style="background:var(--cyan)"></div><div><div class="cert-title" style="color:var(--cyan)">Generative AI — In Progress</div><div class="cert-issuer">Currently Learning</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section id="stats">
+  <div class="section-inner">
+    <div class="section-label">05 / Analytics</div>
+    <div class="section-title">Live Dashboard</div>
+    <div class="analytics-row">
+      <div class="metric-card"><div class="metric-num" id="visNum">0</div><div class="metric-label">Active Visitors</div></div>
+      <div class="metric-card"><div class="metric-num">16</div><div class="metric-label">Repositories</div></div>
+      <div class="metric-card"><div class="metric-num">6+</div><div class="metric-label">Live Apps</div></div>
+      <div class="metric-card"><div class="metric-num">11</div><div class="metric-label">Certifications</div></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">// Visitor Activity — Live</div>
+      <canvas id="graph"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">06 / Contact</div>
+    <div class="section-title">Get In Touch</div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-blurb">
+          I'm actively looking for opportunities in data science and software engineering.
+          Whether you have a project idea, a role, or just want to connect — my inbox is open.
+        </p>
+
+        <a class="contact-item" href="mailto:tshikovhitshedza9@gmail.com">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div><div class="contact-key">Email</div><div class="contact-val">tshikovhitshedza9@gmail.com</div></div>
+        </a>
+        <a class="contact-item" href="tel:0760293340">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><div class="contact-key">Phone</div><div class="contact-val">076 029 3340</div></div>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/tshedza-tshikovhi-238080329" target="_blank">
+          <div class="contact-icon"><i class="fa-brands fa-linkedin"></i></div>
+          <div><div class="contact-key">LinkedIn</div><div class="contact-val">tshedza-tshikovhi-238080329</div></div>
+        </a>
+
+        <div class="social-strip">
+          <a class="social-btn" href="https://github.com/Unsolvedstar" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="social-btn" href="https://share.streamlit.io/user/unsolvedstar" target="_blank"><i class="fa-solid fa-rocket"></i> Streamlit</a>
+          <a class="social-btn" href="https://www.linkedin.com/in/tshedza-tshikovhi-238080329" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <div style="font-size:42px; margin-bottom:12px;">🇿🇦</div>
+        <div class="map-city">PRETORIA</div>
+        <div class="map-country">South Africa · Gauteng</div>
+        <div class="map-coords">25.7479° S, 28.2293° E</div>
+        <div style="margin-top:24px; font-size:13px; color:var(--dim); line-height:1.7;">
+          Open to <span style="color:var(--white)">remote, hybrid,</span> and<br>
+          <span style="color:var(--white)">on-site opportunities</span> across SA.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Tshedza Tshikovhi &nbsp;·&nbsp; <span>Data Scientist & Software Engineer</span> &nbsp;·&nbsp; Pretoria, SA</p>
+  <p style="margin-top:8px; font-size:11px;">
+    <a href="https://www.linkedin.com/in/tshedza-tshikovhi-238080329" style="color:var(--sky); text-decoration:none;">LinkedIn</a>
+    &nbsp;|&nbsp;
+    <a href="https://github.com/Unsolvedstar" style="color:var(--sky); text-decoration:none;">GitHub</a>
+    &nbsp;|&nbsp;
+    <a href="https://share.streamlit.io/user/unsolvedstar" style="color:var(--sky); text-decoration:none;">Streamlit</a>
+  </p>
+</footer>
+
+<script>
+/* ── VISITOR COUNTER ── */
+let v = 118;
+const visEl = document.getElementById('visNum');
+visEl.textContent = v;
+setInterval(() => {
+  v += Math.floor(Math.random() * 3);
+  visEl.textContent = v;
+}, 2200);
+
+/* ── LIVE CHART ── */
+const canvas = document.getElementById('graph');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = canvas.offsetWidth  * devicePixelRatio;
+  canvas.height = canvas.offsetHeight * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
+
+canvas.style.height = '220px';
+resize();
+window.addEventListener('resize', resize);
+
+const W = () => canvas.offsetWidth;
+const H = () => canvas.offsetHeight;
+
+let data = Array.from({length: 50}, () => 60 + Math.random() * 120);
+
+function draw() {
+  const w = W(), h = H();
+  ctx.clearRect(0, 0, w, h);
+
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+
+  const pts = data.map((v, i) => ({
+    x: (i / (data.length - 1)) * w,
+    y: h - ((v - min) / range) * (h * 0.8) - h * 0.1
+  }));
+
+  /* fill */
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, h);
+  pts.forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(pts[pts.length-1].x, h);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(0,170,255,0.25)');
+  grad.addColorStop(1, 'rgba(0,170,255,0)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  /* line */
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  pts.forEach((p, i) => {
+    if (i === 0) return;
+    const pp = pts[i-1];
+    const cpx = (pp.x + p.x) / 2;
+    ctx.bezierCurveTo(cpx, pp.y, cpx, p.y, p.x, p.y);
+  });
+  ctx.strokeStyle = '#00aaff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  /* dot */
+  const last = pts[pts.length - 1];
+  ctx.beginPath();
+  ctx.arc(last.x, last.y, 5, 0, Math.PI*2);
+  ctx.fillStyle = '#00d4ff';
+  ctx.fill();
+
+  data.shift();
+  data.push(50 + Math.random() * 130);
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+/* ── REVEAL ON SCROLL ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.skill-card, .project-card, .cert-card, .metric-card').forEach(el => {
+  el.style.transition = 'opacity .5s ease, transform .5s ease, border-color .3s';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
