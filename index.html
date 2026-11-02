@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tshedza Tshikovhi, software developer, data scientist and UI/UX designer in Pretoria. Full-stack apps, machine learning projects and team leadership at Shudu Connections.">
+<meta name="theme-color" content="#060810">
+<meta property="og:title" content="Tshedza Tshikovhi | Software Developer &amp; Data Scientist">
+<meta property="og:description" content="Full-stack apps, ML projects and live products built for South African users.">
+<meta property="og:type" content="website">
 <title>Tshedza Tshikovhi | Software Developer, Data Scientist & UI/UX Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -732,11 +737,142 @@ footer span { color: var(--sky); }
   .hero-stats { gap: 24px; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════ VISUAL UPGRADE ═══════════════ */
+:root {
+  --glass: linear-gradient(150deg, rgba(0,100,190,0.16) 0%, rgba(8,12,26,0.55) 60%);
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+::selection { background: rgba(0,170,255,0.35); color: #fff; }
+html { scrollbar-color: #0b4a86 #060810; scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #060810; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#0b4a86, #0a2f57); border-radius: 10px; border: 2px solid #060810; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+section[id] { scroll-margin-top: 70px; }
+
+/* background: drifting colour orbs */
+.bg-layer::before, .bg-layer::after {
+  content: ''; position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55;
+  will-change: transform;
+}
+.bg-layer::before { width: 46vw; height: 46vw; left: -12vw; top: 18vh; background: radial-gradient(circle, rgba(0,100,200,.55), transparent 65%); animation: drift1 26s ease-in-out infinite alternate; }
+.bg-layer::after  { width: 38vw; height: 38vw; right: -10vw; top: 55vh; background: radial-gradient(circle, rgba(0,212,255,.28), transparent 65%); animation: drift2 32s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate(14vw, 12vh) scale(1.15); } }
+@keyframes drift2 { to { transform: translate(-12vw, -16vh) scale(1.2); } }
+.bg-grid { mask-image: radial-gradient(ellipse 85% 70% at 50% 30%, #000 30%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 30%, #000 30%, transparent 100%); }
+
+/* scroll progress */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 1100; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, var(--blue), var(--sky), var(--cyan)); box-shadow: 0 0 12px rgba(0,212,255,.6); }
+
+/* nav */
+nav { transition: background .3s, box-shadow .3s; }
+nav.scrolled { background: rgba(6,8,16,0.92); box-shadow: 0 10px 40px rgba(0,0,0,.45); }
+.nav-logo { background: linear-gradient(90deg, var(--sky), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+.nav-links a { position: relative; padding: 6px 0; }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: linear-gradient(90deg, var(--sky), var(--cyan)); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--white); }
+.nav-badge { position: relative; padding-left: 22px; }
+.nav-badge::before { content: ''; position: absolute; left: 9px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: #2ee59d; box-shadow: 0 0 0 0 rgba(46,229,157,.6); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 8px rgba(46,229,157,0); } 100% { box-shadow: 0 0 0 0 rgba(46,229,157,0); } }
+.nav-burger { display: none; width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border); background: rgba(0,170,255,.06); color: var(--white); font-size: 16px; cursor: pointer; align-items: center; justify-content: center; }
+
+/* hero */
+.hero-name { text-shadow: 0 0 60px rgba(0,120,220,.35); }
+.hero-name span { background: linear-gradient(90deg, var(--sky), var(--cyan), #7fe7ff, var(--sky)); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 6s linear infinite; }
+@keyframes shimmer { to { background-position: -250% 0; } }
+.hero-desc { color: #a3b2d0; }
+.btn-primary { background: linear-gradient(135deg, #0a6ad0, var(--blue)); position: relative; overflow: hidden; }
+.btn-primary::after { content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); transition: left .6s var(--ease); }
+.btn-primary:hover::after { left: 130%; }
+.btn-outline { background: rgba(255,255,255,.02); backdrop-filter: blur(6px); }
+.btn-outline:hover { background: rgba(0,170,255,.08); transform: translateY(-2px); }
+.hero-stats { padding: 18px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--glass); backdrop-filter: blur(10px); width: fit-content; }
+.stat-num { background: linear-gradient(180deg, #fff, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.chelsea-crest { filter: drop-shadow(0 0 28px rgba(0,170,255,.65)); }
+
+/* section headings */
+.section-label { display: flex; align-items: center; gap: 12px; }
+.section-label::before { content: ''; width: 28px; height: 1px; background: var(--sky); }
+.section-title { position: relative; padding-bottom: 18px; margin-bottom: 44px; }
+.section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 64px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--sky), transparent); }
+section + section { border-top: 1px solid rgba(255,255,255,.04); }
+
+/* glass cards + spotlight */
+.about-panel, .exp-card, .skill-card, .project-card, .cert-card, .metric-card, .chart-wrap, .map-placeholder {
+  background: var(--glass);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(0,170,255,.16);
+  box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 12px 30px rgba(0,0,0,.25);
+  position: relative;
+}
+.exp-card::after, .skill-card::after, .project-card::after, .cert-card::after, .metric-card::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(0,190,255,.14), transparent 45%);
+  opacity: 0; transition: opacity .35s;
+}
+.exp-card:hover::after, .skill-card:hover::after, .project-card:hover::after, .cert-card:hover::after, .metric-card:hover::after { opacity: 1; }
+.project-card:hover, .skill-card:hover, .exp-card:hover { box-shadow: 0 22px 50px rgba(0,60,130,.45), 0 0 0 1px rgba(0,170,255,.25) inset; }
+.project-card > *, .exp-card > *, .skill-card > * { position: relative; z-index: 1; }
+.project-card > .project-number { position: absolute; z-index: 0; }
+.project-icon { background: linear-gradient(145deg, rgba(0,120,220,.5), rgba(0,60,120,.4)); box-shadow: 0 6px 18px rgba(0,100,200,.35); }
+.project-title { font-size: 24px; }
+.project-desc { color: #9eaecb; }
+.tech-chip { border-radius: 20px; padding: 3px 10px; }
+.tag.hot { background: rgba(0,170,255,.08); box-shadow: 0 0 14px rgba(0,170,255,.12); }
+.tag { border-radius: 20px; }
+.proj-btn { transition: background .2s, color .2s, transform .2s, box-shadow .2s; }
+.proj-btn:hover { transform: translateY(-2px); }
+.proj-btn-live:hover { box-shadow: 0 8px 22px rgba(0,170,255,.4); }
+
+/* experience timeline */
+.exp-list { position: relative; padding-left: 34px; }
+.exp-list::before { content: ''; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 2px; background: linear-gradient(var(--sky), rgba(0,170,255,.05)); border-radius: 2px; }
+.exp-list > .exp-card::before { content: ''; position: absolute; left: -32px; top: 30px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 3px solid var(--sky); box-shadow: 0 0 14px rgba(0,170,255,.7); }
+
+/* project filter */
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: -20px 0 28px; }
+.filter-btn { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); background: rgba(255,255,255,.02); color: var(--dim); cursor: pointer; transition: all .25s var(--ease); }
+.filter-btn:hover { color: var(--white); border-color: var(--sky); }
+.filter-btn.active { background: linear-gradient(135deg, #0a6ad0, var(--blue)); color: #fff; border-color: var(--sky); box-shadow: 0 6px 20px rgba(0,120,220,.4); }
+.project-card.hide { display: none; }
+
+/* contact + footer */
+.contact-item { border-radius: 8px; padding: 14px 10px; transition: background .25s; }
+.contact-item:hover { background: rgba(0,170,255,.06); }
+.social-btn:hover { transform: translateY(-2px); }
+.map-city { background: linear-gradient(90deg, #fff, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+footer { background: linear-gradient(180deg, transparent, rgba(0,84,160,.12)); }
+
+/* scroll reveal (class based so hover transforms still work) */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease), border-color .3s, box-shadow .3s; transition-delay: var(--d, 0ms); }
+.reveal.in { opacity: 1; transform: none; }
+.project-card.reveal.in:hover { transform: translateY(-6px); transition-delay: 0ms; }
+.skill-card.reveal.in:hover, .exp-card.reveal.in:hover { transform: translateY(-4px); transition-delay: 0ms; }
+
+@media (max-width: 768px) {
+  .nav-burger { display: inline-flex; }
+  .nav-links { display: flex; position: fixed; top: 60px; left: 0; right: 0; flex-direction: column; gap: 0; padding: 8px 20px 20px; background: #060810; border-bottom: 1px solid var(--border); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: .25s; }
+  .nav-links.open { transform: none; opacity: 1; pointer-events: auto; }
+  .nav-links li a { display: block; padding: 14px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.05); }
+  .exp-list { padding-left: 26px; }
+  .exp-list > .exp-card::before { left: -25px; }
+  .hero-stats { width: 100%; justify-content: space-between; }
+  .filter-bar { margin-top: -28px; }
+}
+@media (max-width: 768px) { .scroll-hint { display: none; } }
+@media (max-width: 520px) { .nav-badge { display: none; } nav { gap: 12px; } .nav-burger { margin-left: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
 </style>
 </head>
 
 <body>
 
+<div class="scroll-progress" id="progress"></div>
 <!-- BG -->
 <div class="bg-layer"></div>
 <div class="bg-photo"></div>
@@ -744,8 +880,8 @@ footer span { color: var(--sky); }
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">TT</div>
-  <ul class="nav-links">
+  <a class="nav-logo" href="#home" aria-label="Home">TT</a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -756,6 +892,7 @@ footer span { color: var(--sky); }
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-badge">Available for opportunities</div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
 </nav>
 
 <!-- HERO -->
@@ -1015,6 +1152,11 @@ footer span { color: var(--sky); }
   <div class="section-inner">
     <div class="section-label">04 / Projects</div>
     <div class="section-title">Featured Work</div>
+    <div class="filter-bar" id="filterBar" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web &amp; Mobile</button>
+      <button class="filter-btn" data-filter="data">Data &amp; ML</button>
+    </div>
     <div class="projects-grid">
 
       <div class="project-card">
@@ -1442,22 +1584,68 @@ function draw() {
 
 draw();
 
-/* ── REVEAL ON SCROLL ── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
+/* ── UPGRADE: reveal, nav, spotlight, filter ── */
+(function () {
+  const $ = (q, c = document) => [...c.querySelectorAll(q)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.querySelectorAll('.skill-card, .project-card, .cert-card, .metric-card').forEach(el => {
-  el.style.transition = 'opacity .5s ease, transform .5s ease, border-color .3s';
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  observer.observe(el);
-});
+  /* reveal on scroll */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  $('.section-title, .about-panel, .about-text, .exp-card, .skill-card, .project-card, .cert-card, .metric-card, .chart-wrap, .map-placeholder, .contact-item').forEach(el => {
+    el.classList.add('reveal');
+    const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal') || c === el);
+    el.style.setProperty('--d', Math.min(sibs.indexOf(el), 6) * 70 + 'ms');
+    io.observe(el);
+  });
+
+  /* progress bar + nav state */
+  const bar = document.getElementById('progress'), nav = document.querySelector('nav');
+  const onScroll = () => {
+    const h = document.documentElement;
+    bar.style.transform = 'scaleX(' + (h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1)) + ')';
+    nav.classList.toggle('scrolled', h.scrollTop > 20);
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* active nav link */
+  const links = $('.nav-links a');
+  const so = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  $('section[id]').forEach(sec => so.observe(sec));
+
+  /* mobile menu */
+  const burger = document.getElementById('burger'), menu = document.getElementById('navLinks');
+  const setMenu = open => {
+    menu.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.firstElementChild.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  };
+  burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  links.forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  /* cursor spotlight on cards */
+  if (!reduce) $('.exp-card, .skill-card, .project-card, .cert-card, .metric-card').forEach(c =>
+    c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }));
+
+  /* project filter: Data & ML = anything built in Python, otherwise Web & Mobile */
+  const cards = $('.project-card');
+  cards.forEach(c => {
+    const chips = $('.tech-chip', c).map(x => x.textContent.trim().toLowerCase());
+    c.dataset.cat = chips.includes('python') ? 'data' : 'web';
+  });
+  $('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+    $('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+    const f = btn.dataset.filter;
+    cards.forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+  }));
+})();
 </script>
 </body>
 </html>
